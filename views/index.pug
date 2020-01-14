@@ -3,3 +3,23 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  div
+    if user
+      div
+        a(href="/logout") #{user.username} をログアウト
+      div
+        a(href="/reviews/new") 新しい記録を作る
+      - var hasReview
+        h3 あなたの作った記録一覧
+        table.table
+          tr
+            th 題名
+            th 更新日時
+          each review in reviews
+            tr
+              td
+                a(href=`/reviews/${review.reviewId}`) #{review.reviewName}
+              td #{review.updatedAt}      
+    else
+      div
+        a(href="/login") ログイン・新規登録はこちら

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h3 記録の編集
+  form(action=`/reviews/${review.reviewId}?edit=1`, method="post")
+    div
+      h5 題名
+      input(type="text" name="reviewName" value=review.reviewName)
+    div
+      h5 作者
+      input(type="text" name="author" value=review.author)
+    div
+      h5 出版社
+      input(type="text" name="publisher" value=review.publisher)
+    div
+      h5 感想・メモ
+      textarea(name="memo") #{review.memo}
+    div
+      h5 フォーマット
+      input(type="radio", name="format" value=0)
+      span 紙書籍
+      input(type="radio", name="format" value=1)
+      span 電子書籍
+    div
+      button(type="submit") 以上の内容で記録を編集する 
+    div
+      a(href=`/reviews/${review.reviewId}`) 編集を中止して戻る
+  h3 記録の削除
+  form(action=`/reviews/${review.reviewId}?delete=1`, method="post")
+    button(type="submit") この記録を削除する

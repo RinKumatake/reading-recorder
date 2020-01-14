@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h4 題名: #{review.reviewName}
+  p(style="white-space:pre;")
+  p 作者: #{review.author}
+  p 出版社: #{review.publisher}
+  p 感想・メモ
+  p #{review.memo}
+  p 更新日時: #{review.updatedAt}
+  div
+    a(href=`/reviews/${review.reviewId}/edit`) この記録を編集する

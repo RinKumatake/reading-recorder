@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  form(action="/reviews", method="post")
+    div
+      h5 本のタイトル
+      input(type="text", name="reviewName")
+    div
+      h5 著者名
+      input(type="text", name="author")
+    div
+      h5 出版社名
+      input(type="text", name="publisher")
+    div
+      h5 感想・メモ
+      textarea(name="memo")
+    div
+      h5 フォーマット
+      input(type="radio", name="format" value=0)
+      span 紙書籍
+      input(type="radio", name="format" value=1)
+      span 電子書籍
+    
+    button(type="submit") 記録を作成する
+      
