@@ -16,10 +16,17 @@ block content
       textarea(name="memo")
     div
       h5 フォーマット
-      input(type="radio", name="format" value=0)
+      input(type="radio", name="format" value="紙")
       span 紙書籍
-      input(type="radio", name="format" value=1)
+      input(type="radio", name="format" value="電子")
       span 電子書籍
-    
+    div
+      h5 カテゴリー
+      input(type="radio", name="category" value="学習")
+      span 学習
+      input(type="radio", name="category" value="娯楽")
+      span 娯楽    
     button(type="submit") 記録を作成する
+  div
+    a(href="/") トップページに戻る
       

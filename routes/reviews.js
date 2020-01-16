@@ -13,6 +13,7 @@ router.get('/new', authenticationEnsurer, (req, res, next) => {
 router.post('/', authenticationEnsurer, (req, res, next) => {
   const reviewId = uuid.v4();
   const updatedAt = new Date();
+  const updatedYear = updatedAt.getFullYear();
   Review.create({
     reviewId: reviewId,
     reviewName: req.body.reviewName.slice(0, 255) || '(未設定)',
@@ -21,7 +22,9 @@ router.post('/', authenticationEnsurer, (req, res, next) => {
     memo: req.body.memo,
     createdBy: req.user.id,
     updatedAt: updatedAt,
-    format: req.body.format
+    updatedYear: updatedYear,
+    format: req.body.format,
+    category: req.body.category
   }).then((review) => {
     res.redirect('/reviews/' + review.reviewId);
   });  
@@ -91,7 +94,8 @@ router.post('/:reviewId', authenticationEnsurer, (req, res, next) => {
           memo: req.body.memo,
           createdBy: req.user.id,
           updatedAt: updatedAt,
-          format: req.body.format
+          format: req.body.format,
+          category: req.body.category
         }).then((review) => {
           res.redirect('/reviews/' + review.reviewId);
         });

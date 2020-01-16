@@ -3,7 +3,7 @@ var router = express.Router();
 var Review = require('../models/review');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {  
   const title = 'りーでぃんぐれこーだー';
   if (req.user) {
     Review.findAll({

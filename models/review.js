@@ -30,12 +30,19 @@ const Review = loader.database.define('reviews', {
   },
   updatedAt: {
     type: Sequelize.DATE,
-    allowNull: false,
+    allowNull: false
+  },
+  updatedYear: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   format: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    defaultValue: 0
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  category: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 }, {
   freezeTableName: true,

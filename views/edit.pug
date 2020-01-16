@@ -22,6 +22,12 @@ block content
       input(type="radio", name="format" value=1)
       span 電子書籍
     div
+      h5 カテゴリー
+      input(type="radio", name="category" value=0)
+      span 学習
+      input(type="radio", name="category" value=1)
+      span 娯楽
+    div
       button(type="submit") 以上の内容で記録を編集する 
     div
       a(href=`/reviews/${review.reviewId}`) 編集を中止して戻る
