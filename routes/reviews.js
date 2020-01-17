@@ -4,7 +4,7 @@ const router = express.Router();
 const authenticationEnsurer = require('./authentication-ensurer');
 const uuid = require('uuid');
 const Review = require('../models/review');
-const User = require('../models/user')
+const User = require('../models/user');
 
 router.get('/new', authenticationEnsurer, (req, res, next) => {
   res.render('new', { user: req.user });

@@ -57,7 +57,7 @@ describe('/reviews', () => {
     User.upsert({ userId: 0, username: 'testuser' }).then(() => {
       request(app)
         .post('/reviews')
-        .send({ reviewName: 'テスト記録1', author: 'テストauthor', publisher: 'テストpublisher', memo: 'テストメモ１\r\nテストメモ２', format: 0, category: 1 })
+        .send({ reviewName: 'テスト記録1', author: 'テストauthor', publisher: 'テストpublisher', memo: 'テストメモ１\r\nテストメモ２', format: '電子', category: '娯楽' })
         .expect('Location', /reviews/)
         .expect(302)
         .end((err, res) => {
@@ -69,10 +69,18 @@ describe('/reviews', () => {
             .expect(/テストpublisher/)
             .expect(/テストメモ１/)
             .expect(/テストメモ２/)
-            .expect(/0/)
-            .expect(/1/)
             .expect(200)
-            .end((err, res) => {
+            .end((err, res) => {              
+              const reviewId = createdReviewPath.split('/reviews/')[1];
+              Review.findByPk(reviewId).then((r) => {
+                assert.equal(r.reviewName, 'テスト記録1');
+                assert.equal(r.author, 'テストauthor');
+                assert.equal(r.publisher, 'テストpublisher');
+                assert.equal(r.memo, 'テストメモ１\r\nテストメモ２');
+                assert.equal(r.format, '電子');
+                assert.equal(r.category, '娯楽');
+                assert.equal(r.updatedYear, 2020);
+              })
               deleteReviewAggregate(createdReviewPath.split('/reviews/')[1], done, err);
             });
           });
@@ -95,22 +103,22 @@ describe('/reviews/:reviewId?edit=1', () => {
     User.upsert({ userId: 0, username: 'testuser' }).then(() => {
       request(app)
         .post('/reviews')
-        .send({ reviewName: 'テスト更新記録1', author: 'テスト更新author１', publisher: 'テスト更新publisher１', memo: 'テスト更新メモ１', format: 0, category: 1 })
+        .send({ reviewName: 'テスト更新記録1', author: 'テスト更新author１', publisher: 'テスト更新publisher１', memo: 'テスト更新メモ１', format: '電子', category: '娯楽' })
         .end((err, res) => {
           const createdReviewPath = res.headers.location;
           const reviewId = createdReviewPath.split('/reviews/')[1];
           //更新がされることをテスト
           request(app)
             .post(`/reviews/${reviewId}?edit=1`)
-            .send({ reviewName: 'テスト更新記録２', author: 'テスト更新author２', publisher: 'テスト更新publisher２', memo: 'テスト更新メモ２', format: 1, category: 0 })
+            .send({ reviewName: 'テスト更新記録２', author: 'テスト更新author２', publisher: 'テスト更新publisher２', memo: 'テスト更新メモ２', format: '紙', category: '学習' })
             .end((err, res) => {
               Review.findByPk(reviewId).then((r) => {
                 assert.equal(r.reviewName, 'テスト更新記録２');
                 assert.equal(r.author, 'テスト更新author２');
                 assert.equal(r.publisher, 'テスト更新publisher２');
                 assert.equal(r.memo, 'テスト更新メモ２');
-                assert.equal(r.format, 1);
-                assert.equal(r.category, 0);
+                assert.equal(r.format, '紙');
+                assert.equal(r.category, '学習');
                 deleteReviewAggregate(reviewId, done, err);
               });
             });
@@ -134,7 +142,7 @@ describe('/reviews/:reviewId?delete=1', () => {
     User.upsert({ userId: 0, username: 'testuser' }).then(() => {
       request(app)
         .post('/reviews')
-        .send({ reviewName: 'テスト更新記録1', author: 'テスト更新author１', publisher: 'テスト更新publisher１', memo: 'テスト更新メモ１', format: 0, category: 1 })
+        .send({ reviewName: 'テスト更新記録1', author: 'テスト更新author１', publisher: 'テスト更新publisher１', memo: 'テスト更新メモ１', format: '紙', category: '学習' })
         .end((err, res) => {
           const createdReviewPath = res.headers.location;
           const reviewId = createdReviewPath.split('/reviews/')[1];

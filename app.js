@@ -50,6 +50,7 @@ var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var reviewsRouter = require('./routes/reviews');
 
+
 var app = express();
 app.use(helmet());
 
@@ -71,6 +72,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/reviews', reviewsRouter);
+
 
 app.get('/auth/github',
   passport.authenticate('github', { scope: ['user:email'] }),
