@@ -7,6 +7,7 @@ const User = require('../models/user');
 const Review = require('../models/review');
 const deleteReviewAggregate = require('../routes/reviews').deleteReviewAggregate;
 
+
 describe('/login', () => {
   before(() => {
     passportStub.install(app);
@@ -22,7 +23,7 @@ describe('/login', () => {
     request(app)
       .get('/login')
       .expect('Content-type', 'text/html; charset=utf-8')
-      .expect(/<a href="\/auth\/github"/)
+      .expect(/<a class="btn btn-info my-3" href="\/auth\/github"/)
       .expect(200, done)
   });
 
@@ -69,6 +70,8 @@ describe('/reviews', () => {
             .expect(/テストpublisher/)
             .expect(/テストメモ１/)
             .expect(/テストメモ２/)
+            .expect(/電子/)
+            .expect(/娯楽/)            
             .expect(200)
             .end((err, res) => {              
               const reviewId = createdReviewPath.split('/reviews/')[1];
@@ -80,7 +83,7 @@ describe('/reviews', () => {
                 assert.equal(r.format, '電子');
                 assert.equal(r.category, '娯楽');
                 assert.equal(r.updatedYear, 2020);
-              })
+              });
               deleteReviewAggregate(createdReviewPath.split('/reviews/')[1], done, err);
             });
           });
@@ -160,6 +163,61 @@ describe('/reviews/:reviewId?delete=1', () => {
     });
   });
 });
+
+describe('/analytics/:updatedYear', () => {
+  before(() => {
+    passportStub.install(app);
+    passportStub.login({ id: 0, username: 'testuser' });
+  });
+
+  after(() => {
+    passportStub.logout();
+    passportStub.uninstall(app);
+  });
+
+  it('記録が集計結果に正しく反映される', (done) => {
+    User.upsert({ userId: 0, username: 'testuser' }).then(() => {
+    request(app)
+      .post('/reviews')
+      .send({
+          reviewName: 'テスト記録1',
+          author: 'テストauthor',
+          publisher: 'テストpublisher',
+          memo: 'テストメモ１',          
+          format: '電子',
+          category: '娯楽'
+      })
+      .expect('Location', /reviews/)
+      .expect(302)
+      .end((err, res) => {
+        const createdReviewPath = res.headers.location;
+        const reviewId = createdReviewPath.split('/reviews/')[1];
+        Review.findAll({
+          where: {createdBy: 0}
+        }).then((review) => {          
+          request(app)
+          .get(`analytics/${review.updatedYear}`)
+          .expect(/2020/)
+          .expect(/1/)
+          .expect(/0/)
+          .expect(/0/)
+          .expect(/0/)
+          .expect(/1/)
+          .expect(/0/)                         
+          .expect(200)               
+          });
+            deleteReviewAggregate(reviewId, done, err);
+      });       
+    });       
+  });
+});
+      
+       
+  
+        
+      
+
+   
 
 
 

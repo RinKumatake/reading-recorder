@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  div(class="card my-4")
+    div(class="card-header text-center")
+      h3 #{updatedYear} 年の集計結果
+    div(class="card-body")
+      h5(class="card-title") 目的:
+      p(class="card-text mb-0") 学習目的で読んだ本
+      span(class="font-weight-bold text-danger") #{countCategoryStudy} 冊
+      p(class="card-text mb-0 mt-2") 娯楽目的で読んだ本
+      span(class="font-weight-bold text-danger") #{countCategoryEntertainment} 冊
+      p(class="card-text mb-0 mt-2") 上記以外の目的で読んだ本
+      span(class="font-weight-bold text-danger")  #{countCategoryDefault} 冊
+      h5(class="card-title mt-3") フォーマット:
+      p(class="card-text mb-0") 紙書籍で読んだ本
+      span(class="font-weight-bold text-danger") #{countFormatPaper} 冊
+      p(class="card-text mb-0 mt-2") 電子書籍で読んだ本
+      span(class="font-weight-bold text-danger") #{countFormatElectronic} 冊
+      p(class="card-text mb-0 mt-2") 上記以外の形態で読んだ本
+      span(class="font-weight-bold text-danger") #{countFormatDefault} 冊
+    div(class="card-footer text-center")
+      h4 #{updatedYear} 年に読んだ本は合計
+      h4(class="font-weight-bold text-danger") #{reviews.length} 冊
+  a(href="/analytics", class="btn btn-info btn-block my-3") 集計結果と全記録に戻る
+  a(href="/", class="btn btn-success btn-block my-3") トップページに戻る
+  -var hasReview = reviews.length > 0
+  if hasReview
+    h2(class="mt-5", style="background-color: #b5b192") #{updatedYear} 年全記録
+    table(class="table table-striped") 
+      tr
+        th #
+        th 題名
+        th 更新日時        
+      each review, index in reviews
+        - var number = index + 1
+        tr
+          td #{number}
+          td
+            a(href=`/reviews/${review.reviewId}`, class="text-info font-weight-bold") #{review.reviewName}
+          td #{review.updatedAt}    
+

@@ -1,26 +1,27 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div
+  div(class="jumbotron jumbotron-fluid my-3", style="background-image: url(../images/title.jpg); background-size: cover;")
+    div(class="container")
+      h3(class="display-4 font-weight-bold text-dark") りーでぃんぐれこーだー
+      h6(class="read font-weight-bold text-dark") りーでぃんぐれこーだーは、秘密の読書記録の作成と集計ができるサービスです。
+  div      
     if user
       div
-        a(href="/logout") #{user.username} をログアウト
-      div
-        a(href="/reviews/new") 新しい記録を作る
-      - var hasReview = reviews.length > 0
-      if hasReview
-        h3 あなたの作った記録一覧
-        table.table
-          tr
-            th 題名
-            th 更新日時
-          each review in reviews
+        a(href="/reviews/new", class="btn btn-info btn-lg mt-3") 新しい記録を作成
+        - var hasReview = reviews.length > 0
+        if hasReview
+          h3(class="text-center mt-5 mb-3", style="background-color: #b5b192") 最近の記録
+          table(class="table table-striped")
             tr
-              td
-                a(href=`/reviews/${review.reviewId}`) #{review.reviewName}
-              td #{review.updatedAt}      
+              th 題名
+              th 更新日時
+            each review in reviews
+              tr
+                td
+                  a(href=`/reviews/${review.reviewId}`, class="text-info font-weight-bold") #{review.reviewName}
+                td #{review.updatedAt}
     else
-      div
-        a(href="/login") ログイン・新規登録はこちら
+      hr(class="my-4")      
+      a(href="/login", class="btn btn-info btn-lg mb-1", role="button") 新規登録・ログイン
+      p GitHubアカウントをお持ちの方は新規登録・ログインができます。

@@ -49,6 +49,8 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var reviewsRouter = require('./routes/reviews');
+var testRouter = require('./routes/test');
+var analyticsRouter = require('./routes/analytics');
 
 
 var app = express();
@@ -72,6 +74,8 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/reviews', reviewsRouter);
+app.use('/test', testRouter);
+app.use('/analytics', analyticsRouter);
 
 
 app.get('/auth/github',

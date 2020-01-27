@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h3(class="text-center my-3", style="background-color: #c1bea4") 集計結果と全読書記録一覧
+  h4(class="text-center mt-3 mb-0") これまで読んできた本の総数:
+  h4(class="font-weight-bold text-danger text-center mb-5") #{reviews.length} 冊
+  p(class="text-center") 注 : 集計結果には最後に記録を編集・更新した年が反映されます。
+  div(class="card m-auto", style="width: 30rem;")
+    div(class="card-header text-center")
+      h5 集計結果と読書記録一覧
+    each year in reportedYear  
+      ul(class="list-group list-group-flush text-center")
+        li(class="list-group-item")
+          a(href=`analytics/${year}`, class="h5 text-info") #{year}年の集計結果と読書記録
+  div
+    a(href="/", class="btn btn-success d-block my-3") トップページに戻る
+  
+  
+  
+  
+
+  
+  
+  
+  

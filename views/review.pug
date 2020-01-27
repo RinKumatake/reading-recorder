@@ -1,14 +1,22 @@
 extends layout
 
 block content
-  h4 題名: #{review.reviewName}
-  p(style="white-space:pre;")
-  p 作者: #{review.author}
-  p 出版社: #{review.publisher}
-  p 感想・メモ
-  p #{review.memo}
-  p 更新日時: #{review.updatedAt}
-  div
-    a(href=`/reviews/${review.reviewId}/edit`) この記録を編集する
-  div
-    a(href="/") トップページに戻る
+  div(class="card my-4")
+    div(class="card-header text-center")
+      h4 #{review.reviewName}
+    div(class="card-body")
+      h6(class="card-title font-weight-light") 作者:
+      p(class="card-text font-weight-bold") #{review.author}
+      h6(class="card-title font-weight-light") 出版社:
+      p(class="card-text font-weight-bold") #{review.publisher}
+      h6(class="card-title font-weight-light") 感想・メモ:
+      p(class="card-text font-weight-bold") #{review.memo}
+      h6(class="card-title font-weight-light") 更新日時:
+      p(class="card-text font-weight-bold") #{review.updatedAt}
+      h6(class="card-title font-weight-light") フォーマット:
+      p(class="card-text font-weight-bold") #{review.format}
+      h6(class="card-title font-weight-light") 目的:
+      p(class="card-text font-weight-bold") #{review.category} 
+      a(href=`/reviews/${review.reviewId}/edit`, class="btn btn-primary") この記録を編集・削除する
+  a(href="/reviews/new", class="btn btn-info btn-block") 別の記録を作成する
+  a(href="/", class="btn btn-success btn-block my-3") トップページに戻る

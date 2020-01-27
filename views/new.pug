@@ -1,32 +1,33 @@
 extends layout
 
 block content
-  form(action="/reviews", method="post")
-    div
-      h5 本のタイトル
-      input(type="text", name="reviewName")
-    div
-      h5 著者名
-      input(type="text", name="author")
-    div
-      h5 出版社名
-      input(type="text", name="publisher")
-    div
-      h5 感想・メモ
-      textarea(name="memo")
-    div
-      h5 フォーマット
-      input(type="radio", name="format" value="紙")
-      span 紙書籍
-      input(type="radio", name="format" value="電子")
-      span 電子書籍
-    div
-      h5 カテゴリー
-      input(type="radio", name="category" value="学習")
-      span 学習
-      input(type="radio", name="category" value="娯楽")
-      span 娯楽    
-    button(type="submit") 記録を作成する
+  h3(class="text-center my-3", style="background-color: #c1bea4") 新しい記録の作成
+  form(action="/reviews", method="post", id="newReview", class="my-3")
+    div(class="form-group")
+      label(for="reviewName") 本のタイトル      
+      input(type="text", name="reviewName", class="form-control", id="reviewName")
+    div(class="form-group")
+      label(for="author") 本の著者名
+      input(type="text", name="author", class="form-control", id="author")
+    div(class="form-group")
+      label(for="publisher") 出版社名
+      input(type="text", name="publisher", class="form-control", id="publisher")
+    div(class="form-group")
+      label(for="memo") 感想・メモ
+      textarea(name="memo", class="form-control", id="memo")
+    div(class="form-check form-check-inline d-block")
+      div(class="my-1") フォーマット
+      input(type="radio", name="format", value="紙", class="form-check-input", id="formatRadios1")/ 紙書籍
+      label(for="formatRadios1", class="form-check-label mx-3") 
+      input(type="radio", name="format", value="電子", class="form-check-input", id="formatRadios2")/ 電子書籍
+      label(for="formatRadios2", class="form-check-label")
+    div(class="form-check form-check-inline d-block")
+      div(class="mt-3 mb-1") 目的
+      input(type="radio", name="category", value="学習", class="form-check-input", id="categoryRadios1")/ 学習
+      label(for="categoryRadios1", class="form-check-label mx-3")
+      input(type="radio", name="category", value="娯楽", class="form-check-input", id="categoryRadios2")/ 娯楽
+      label(for="categoryRadios2", class="form-check-label")
+    button(type="submit", class="btn btn-primary btn-lg my-5") 記録を作成する
   div
-    a(href="/") トップページに戻る
+    a(href="/", class="btn btn-success") トップページに戻る
       

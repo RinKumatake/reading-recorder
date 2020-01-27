@@ -1,36 +1,34 @@
 extends layout
 
 block content
-  h3 記録の編集
-  form(action=`/reviews/${review.reviewId}?edit=1`, method="post")
-    div
-      h5 題名
-      input(type="text" name="reviewName" value=review.reviewName)
-    div
-      h5 作者
-      input(type="text" name="author" value=review.author)
-    div
-      h5 出版社
-      input(type="text" name="publisher" value=review.publisher)
-    div
-      h5 感想・メモ
-      textarea(name="memo") #{review.memo}
-    div
-      h5 フォーマット
-      input(type="radio", name="format" value=0)
-      span 紙書籍
-      input(type="radio", name="format" value=1)
-      span 電子書籍
-    div
-      h5 カテゴリー
-      input(type="radio", name="category" value=0)
-      span 学習
-      input(type="radio", name="category" value=1)
-      span 娯楽
-    div
-      button(type="submit") 以上の内容で記録を編集する 
-    div
-      a(href=`/reviews/${review.reviewId}`) 編集を中止して戻る
-  h3 記録の削除
-  form(action=`/reviews/${review.reviewId}?delete=1`, method="post")
-    button(type="submit") この記録を削除する
+  h3(class="text-center my-3", style="background-color: #c1bea4") 記録の編集
+  form(action=`/reviews/${review.reviewId}?edit=1`, method="post", id="newReview", class="my-3")
+    div(class="form-group")
+      label(for="reviewName") 本のタイトル      
+      input(type="text", name="reviewName", class="form-control", id="reviewName", value=`${review.reviewName}`)
+    div(class="form-group")
+      label(for="author") 本の著者名
+      input(type="text", name="author", class="form-control", id="author", value=`${review.author}`)
+    div(class="form-group")
+      label(for="publisher") 出版社名
+      input(type="text", name="publisher", class="form-control", id="publisher", value=`${review.publisher}`)
+    div(class="form-group")
+      label(for="memo") 感想・メモ
+      textarea(name="memo", class="form-control", id="memo") #{review.memo}
+    div(class="form-check form-check-inline d-block")
+      div(class="my-1") フォーマット
+      input(type="radio", name="format", value="紙", class="form-check-input", id="formatRadios1")/ 紙書籍
+      label(for="formatRadios1", class="form-check-label mx-3") 
+      input(type="radio", name="format", value="電子", class="form-check-input", id="formatRadios2")/ 電子書籍
+      label(for="formatRadios2", class="form-check-label")
+    div(class="form-check form-check-inline d-block")
+      div(class="my-1") 目的
+      input(type="radio", name="category", value="学習", class="form-check-input", id="categoryRadios1")/ 学習
+      label(for="categoryRadios1", class="form-check-label mx-3")
+      input(type="radio", name="category", value="娯楽", class="form-check-input", id="categoryRadios2")/ 娯楽
+      label(for="categoryRadios2", class="form-check-label")
+    button(type="submit", class="btn btn-primary my-3") 以上の内容で記録を編集する
+  a(href=`/reviews/${review.reviewId}`, class="btn btn-info") 編集を中止して記録ページに戻る
+  h3(class="mt-5") 記録の削除
+  form(action=`/reviews/${review.reviewId}?delete=1`, method="post", id="delete")
+    button(type="submit", class="btn btn-danger my-3") この記録を削除する

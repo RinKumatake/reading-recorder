@@ -1,7 +1,33 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    title りーでぃんぐれこーだー
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+  body(style="background-color: #ebe8df")
+    nav(class="navbar navbar-expand-lg navbar-dark", style="background-color: #857d4a;")
+      a(href="/", class="navbar-brand") りーでぃんぐれこーだー
+      button(class="navbar-toggler", type="button", data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+        span(class="navbar-toggler-icon")
+      div(class="collapse navbar-collapse", id="navbarNav")
+        ul(class="navbar-nav")
+          if user
+            li(class="nav-item")
+              a(href="/", class="nav-link text-dark font-weight-bold") Home
+            li(class="nav-item")
+              a(href="/reviews/new" class="nav-link text-dark font-weight-bold") 新規作成
+            li(class="nav-item")
+              a(href="/analytics" class="nav-link text-dark font-weight-bold") 集計結果と全記録
+            li(class="nav-item")
+              a(href="/logout", class="nav-link text-dark font-weight-bold") ログアウト
+          else
+            li(class="nav-item")
+              a(href="/login", class="nav-link text-dark font-weight-bold") ログイン
+    div(class="container")
+      block content
+    script(src="/javascripts/bundle.js")

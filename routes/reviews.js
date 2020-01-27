@@ -23,8 +23,8 @@ router.post('/', authenticationEnsurer, (req, res, next) => {
     createdBy: req.user.id,
     updatedAt: updatedAt,
     updatedYear: updatedYear,
-    format: req.body.format,
-    category: req.body.category
+    format: req.body.format || '(未設定)',
+    category: req.body.category || '(未設定)'
   }).then((review) => {
     res.redirect('/reviews/' + review.reviewId);
   });  
@@ -86,6 +86,7 @@ router.post('/:reviewId', authenticationEnsurer, (req, res, next) => {
     if(review && isMine(req, review)) {
       if(parseInt(req.query.edit)===1) {
         const updatedAt = new Date();
+        const updatedYear = updatedAt.getFullYear();
         review.update({
           reviewId: review.reviewId,
           reviewName: req.body.reviewName.slice(0, 255) || '(未設定)',
@@ -94,8 +95,9 @@ router.post('/:reviewId', authenticationEnsurer, (req, res, next) => {
           memo: req.body.memo,
           createdBy: req.user.id,
           updatedAt: updatedAt,
-          format: req.body.format,
-          category: req.body.category
+          updatedYear: updatedYear,
+          format: req.body.format || '(未設定)',
+          category: req.body.category || '(未設定)'
         }).then((review) => {
           res.redirect('/reviews/' + review.reviewId);
         });

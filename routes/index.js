@@ -10,7 +10,8 @@ router.get('/', (req, res, next) => {
       where: {
         createdBy: req.user.id
       },
-      order: [['"updatedAt"', 'DESC']]
+      order: [['"updatedAt"', 'DESC']],
+      limit: 10
     }).then((reviews) => {
       res.render('index', {
         title: title,
