@@ -48,6 +48,7 @@ router.get('/:reviewId', authenticationEnsurer, (req, res, next) => {
     if(review) {
     review.formattedUpdatedAt = moment(review.updatedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
     res.render('review', {
+      user: req.user,
       review: review
     });
   } else {

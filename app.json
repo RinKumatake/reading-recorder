@@ -1,0 +1,7 @@
+{
+  "name": "reading-recorder",
+  "description": "りーでぃんぐれこーだー",
+  "logo": "",
+  "keywords": ["node"],
+  "image": "heroku/nodejs"
+}
