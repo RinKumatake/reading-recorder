@@ -3,6 +3,7 @@ extends layout
 block content
   h3(class="text-center my-3", style="background-color: #c1bea4") 記録の編集
   form(action=`/reviews/${review.reviewId}?edit=1`, method="post", id="newReview", class="my-3")
+    input(type="hidden", name="_csrf", value!=csrfToken)
     div(class="form-group")
       label(for="reviewName") 本のタイトル      
       input(type="text", name="reviewName", class="form-control", id="reviewName", value=`${review.reviewName}`)
@@ -31,4 +32,5 @@ block content
   a(href=`/reviews/${review.reviewId}`, class="btn btn-info") 編集を中止して記録ページに戻る
   h3(class="mt-5") 記録の削除
   form(action=`/reviews/${review.reviewId}?delete=1`, method="post", id="delete")
+    input(type="hidden", name="_csrf", value!=csrfToken)
     button(type="submit", class="btn btn-danger my-3") この記録を削除する
