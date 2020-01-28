@@ -20,7 +20,7 @@ block content
               tr
                 td
                   a(href=`/reviews/${review.reviewId}`, class="text-info font-weight-bold") #{review.reviewName}
-                td #{review.updatedAt}
+                td #{review.formattedUpdatedAt}
     else
       hr(class="my-4")      
       a(href="/login", class="btn btn-info btn-lg mb-1", role="button") 新規登録・ログイン

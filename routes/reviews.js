@@ -5,6 +5,7 @@ const authenticationEnsurer = require('./authentication-ensurer');
 const uuid = require('uuid');
 const Review = require('../models/review');
 const User = require('../models/user');
+const moment = require('moment-timezone');
 
 router.get('/new', authenticationEnsurer, (req, res, next) => {
   res.render('new', { user: req.user });
@@ -41,8 +42,9 @@ router.get('/:reviewId', authenticationEnsurer, (req, res, next) => {
       reviewId: req.params.reviewId
     },
     order: [['"updatedAt"', 'DESC']]
-  }).then((review) => {
+  }).then((review) => {    
     if(review) {
+    review.formattedUpdatedAt = moment(review.updatedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
     res.render('review', {
       review: review
     });

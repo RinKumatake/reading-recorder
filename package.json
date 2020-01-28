@@ -9,12 +9,14 @@
   "dependencies": {
     "bootstrap": "4.0.0",
     "cookie-parser": "~1.4.3",
+    "csurf": "1.8.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-session": "1.15.6",
     "helmet": "3.8.2",
     "http-errors": "~1.6.2",
     "jquery": "3.4.1",
+    "moment-timezone": "0.5.0",
     "morgan": "~1.9.0",
     "passport": "0.3.2",
     "passport-github2": "0.1.9",
@@ -23,6 +25,7 @@
     "popper.js": "1.14.0",
     "pug": "2.0.0-beta11",
     "sequelize": "^5.21.3",
+    "serve-favicon": "^2.5.0",
     "uuid": "3.3.2"
   },
   "devDependencies": {

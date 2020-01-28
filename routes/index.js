@@ -1,6 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var Review = require('../models/review');
+const express = require('express');
+const router = express.Router();
+const Review = require('../models/review');
+const moment = require('moment-timezone');
+
 
 /* GET home page. */
 router.get('/', (req, res, next) => {  
@@ -13,6 +15,9 @@ router.get('/', (req, res, next) => {
       order: [['"updatedAt"', 'DESC']],
       limit: 10
     }).then((reviews) => {
+      reviews.forEach((review) => {
+        review.formattedUpdatedAt = moment(review.updatedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
+      });
       res.render('index', {
         title: title,
         user: req.user,

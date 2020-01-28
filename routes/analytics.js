@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const authenticationEnsurer = require('./authentication-ensurer');
 const Review = require('../models/review');
+const moment = require('moment-timezone');
 
 router.get('/', authenticationEnsurer, (req, res, next) => {    
   Review.findAll({ 
@@ -34,7 +35,10 @@ router.get('/:updatedYear', authenticationEnsurer, (req, res, next) => {
       updatedYear: req.params.updatedYear
     },
     order: [['"updatedAt"', 'DESC']]
-  }).then((reviews) => {    
+  }).then((reviews) => { 
+    reviews.forEach((review) => {
+      review.formattedUpdatedAt = moment(review.updatedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
+    })   
     var countFormatPaper = 0;
     var countFormatElectronic = 0;
     var countFormatDefault = 0;
