@@ -17,10 +17,13 @@ block content
               li(class="list-group-item")
                 a(href=`analytics/${year}`, class="h5 text-info") #{year}年の集計結果と読書記録
     else
-      div
-        h4(class="text-center mt-3 mb-0") まだ記録はありません
-        img(src="../images/no_record.jpg", alt="Responsive image", class="img-fluid my-3")
-  div
+      div        
+        div(class="jumbotron jumbotron-fluid my-3", style="background-image: url(../images/no_record.jpg); background-size: cover;")
+          div(class="container")
+            h3(class="display-4 font-weight-bold text-center", style="color: #c27070;") まだ記録はありません
+            hr(class="my-4")
+            h6(class="lead font-weight-bold text-center", style="color: #c27070") りーでぃんぐれこーだー
+    div        
     a(href="/", class="btn btn-success d-block my-3") トップページに戻る
   
   

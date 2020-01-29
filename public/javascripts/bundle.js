@@ -106,7 +106,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()("#newReview").one("submit", functi
   var chkCategoryRadio = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="category"]:checked').val();
 
   if (chkFormatRadio === undefined || chkCategoryRadio === undefined) {
-    alert("選択されていない項目があります。このまま送信すると登録・集計時に'その他'として設定されます（後で編集することも可能）");
+    alert("選択されていない項目があります。このまま送信すると登録・集計時に'その他'として設定されます（後で編集することも可能） 問題がなければ再度作成ボタンを押してください");
     event.preventDefault();
   }
 });

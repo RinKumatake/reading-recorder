@@ -24,7 +24,7 @@ block content
       div(class="card-footer text-center")
         h4 #{updatedYear} 年に読んだ本は合計
         h4(class="font-weight-bold text-danger") #{reviews.length} 冊
-    a(href="/analytics", class="btn btn-info btn-block my-3") 集計結果と全記録に戻る
+    a(href="/analytics", class="btn btn-info btn-block my-3") 集計結果と全記録一覧に戻る
     a(href="/", class="btn btn-success btn-block my-3") トップページに戻る
     h2(class="mt-5", style="background-color: #b5b192") #{updatedYear} 年全記録
     table(class="table table-striped") 
@@ -42,7 +42,7 @@ block content
   else
     h3(class="text-center my-3") #{updatedYear} 年の記録はまだありません。
     img(src="../images/no_record.jpg", alt="Responsive image", class="img-fluid my-3")
-    a(href="/analytics", class="btn btn-info btn-block my-3") 集計結果と全記録に戻る
+    a(href="/analytics", class="btn btn-info btn-block my-3") 集計結果と全記録一覧に戻る
     a(href="/", class="btn btn-success btn-block my-3") トップページに戻る
 
 

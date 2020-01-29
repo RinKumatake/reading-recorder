@@ -4,7 +4,8 @@ block content
   div(class="jumbotron jumbotron-fluid my-3", style="background-image: url(../images/title.jpg); background-size: cover;")
     div(class="container")
       h3(class="display-4 font-weight-bold text-dark") りーでぃんぐれこーだー
-      h6(class="read font-weight-bold text-dark text-wrap", style="width: 24rem;") りーでぃんぐれこーだーは、GitHub認証を利用した秘密の読書記録の作成と集計ができるサービスです。
+      hr(class="my-4")
+      h6(class="lead font-weight-bold text-dark") 秘密の読書記録作成＆集計
   div      
     if user
       div
@@ -22,6 +23,7 @@ block content
                   a(href=`/reviews/${review.reviewId}`, class="text-info font-weight-bold") #{review.reviewName}
                 td #{review.formattedUpdatedAt}
     else
-      hr(class="my-4")      
+      h5(class="font-weight-bold text-dark mb-0") ”りーでぃんぐれこーだー”
+      h5(class="mb-4") GitHub認証を利用して、あなただけの読書記録を作成し、集計するサービスです          
       a(href="/login", class="btn btn-info btn-lg mb-1", role="button") 新規登録・ログイン
-      p GitHubアカウントをお持ちの方は新規登録・ログインができます。
+      p お持ちのGitHubアカウントで新規登録・ログインができます
