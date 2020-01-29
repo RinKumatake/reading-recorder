@@ -21,13 +21,17 @@ block content
       input(type="radio", name="format", value="紙", class="form-check-input", id="formatRadios1")/ 紙書籍
       label(for="formatRadios1", class="form-check-label mx-3") 
       input(type="radio", name="format", value="電子", class="form-check-input", id="formatRadios2")/ 電子書籍
-      label(for="formatRadios2", class="form-check-label")
+      label(for="formatRadios2", class="form-check-label mx-3")
+      input(type="radio", name="format", value="その他", class="form-check-input", id="formatRadios3")/ その他
+      label(for="formatRadios3", class="form-check-label")
     div(class="form-check form-check-inline d-block")
       div(class="mt-3 mb-1") 目的
       input(type="radio", name="category", value="学習", class="form-check-input", id="categoryRadios1")/ 学習
       label(for="categoryRadios1", class="form-check-label mx-3")
       input(type="radio", name="category", value="娯楽", class="form-check-input", id="categoryRadios2")/ 娯楽
-      label(for="categoryRadios2", class="form-check-label")
+      label(for="categoryRadios2", class="form-check-label mx-3")
+      input(type="radio", name="category", value="その他", class="form-check-input", id="categoryRadios3")/ その他
+      label(for="categoryRadios3", class="form-check-label")
     button(type="submit", class="btn btn-primary btn-lg my-5") 記録を作成する
   div
     a(href="/", class="btn btn-success") トップページに戻る

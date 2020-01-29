@@ -9,7 +9,7 @@ $("#newReview").one("submit", () => {
     let chkFormatRadio = $('input[name="format"]:checked').val();
     let chkCategoryRadio = $('input[name="category"]:checked').val();
     if(chkFormatRadio === undefined || chkCategoryRadio === undefined){
-      alert("選択されていない項目があります。このまま送信すると集計時に'未設定'として集計されます（後で編集することも可能）"); 
+      alert("選択されていない項目があります。このまま送信すると登録・集計時に'その他'として設定されます（後で編集することも可能）"); 
       event.preventDefault();
     }    
   });

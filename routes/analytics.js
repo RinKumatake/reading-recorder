@@ -35,10 +35,7 @@ router.get('/:updatedYear', authenticationEnsurer, (req, res, next) => {
       updatedYear: req.params.updatedYear
     },
     order: [['"updatedAt"', 'DESC']]
-  }).then((reviews) => { 
-    reviews.forEach((review) => {
-      review.formattedUpdatedAt = moment(review.updatedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
-    })   
+  }).then((reviews) => {     
     var countFormatPaper = 0;
     var countFormatElectronic = 0;
     var countFormatDefault = 0;
@@ -51,7 +48,7 @@ router.get('/:updatedYear', authenticationEnsurer, (req, res, next) => {
         } else if (a.format === '電子') {
           countFormatElectronic = countFormatElectronic + 1;
         } else {
-          countCategoryDefault = countFormatDefault + 1;
+          countFormatDefault = countFormatDefault + 1;
         }
       });
       reviews.forEach((b) => {
@@ -61,7 +58,10 @@ router.get('/:updatedYear', authenticationEnsurer, (req, res, next) => {
           countCategoryEntertainment = countCategoryEntertainment + 1;
         } else {
           countCategoryDefault = countCategoryDefault + 1;
-        }
+        } 
+      });
+      reviews.forEach((review) => {
+        review.formattedUpdatedAt = moment(review.updatedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm');
       });
       res.render('annual-analytics', 
         {
@@ -75,7 +75,7 @@ router.get('/:updatedYear', authenticationEnsurer, (req, res, next) => {
           countCategoryDefault: countCategoryDefault,
           updatedYear: req.params.updatedYear
         });
-        });
+      });
 });
 
 module.exports = router;
