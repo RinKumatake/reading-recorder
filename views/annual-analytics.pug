@@ -41,7 +41,11 @@ block content
           td #{review.formattedUpdatedAt}  
   else
     h3(class="text-center my-3") #{updatedYear} 年の記録はまだありません。
-    img(src="../images/no_record.jpg", alt="Responsive image", class="img-fluid my-3")
+    div(class="jumbotron jumbotron-fluid my-3", style="background-image: url(../images/nonrecord.jpg); background-size: cover;")
+      div(class="container")
+        h3(class="display-4 font-weight-bold text-center", style="color: #c27070;") まだ #{updatedYear} 年の記録はありません
+          hr(class="my-4")
+          h6(class="lead font-weight-bold text-center", style="color: #c27070") りーでぃんぐれこーだー    
     a(href="/analytics", class="btn btn-info btn-block my-3") 集計結果と全記録一覧に戻る
     a(href="/", class="btn btn-success btn-block my-3") トップページに戻る
 
